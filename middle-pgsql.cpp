@@ -1171,7 +1171,7 @@ middle_pgsql_t::middle_pgsql_t()
             /*copy*/ "COPY %p_ways FROM STDIN;\n",
          /*analyze*/ "ANALYZE %p_ways;\n",
             /*stop*/  "COMMIT;\n",
-   /*array_indexes*/ "CREATE INDEX %p_ways_nodes ON %p_ways USING gin (nodes) WITH (FASTUPDATE=OFF) {TABLESPACE %i};\n"
+   /*array_indexes*/ nullptr
                          ));
     tables.push_back(table_desc(
         /*table = t_rel,*/
