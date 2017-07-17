@@ -230,9 +230,10 @@ void table_t::stop()
         /* slim mode needs this to be able to apply diffs */
         if (slim && !drop_temp)
         {
-            fprintf(stderr, "Creating osm_id index on %s\n", name.c_str());
-            pgsql_exec_simple(sql_conn, PGRES_COMMAND_OK, (fmt("CREATE INDEX %1%_pkey ON %1% USING BTREE (osm_id) %2%") % name %
-                (table_space_index ? "TABLESPACE " + table_space_index.get() : "")).str());
+            //pnly needed after a delete/rename of the table
+            //fprintf(stderr, "Creating osm_id index on %s\n", name.c_str());
+            //pgsql_exec_simple(sql_conn, PGRES_COMMAND_OK, (fmt("CREATE INDEX %1%_pkey ON %1% USING BTREE (osm_id) %2%") % name %
+                //(table_space_index ? "TABLESPACE " + table_space_index.get() : "")).str());
         }
         /* Create hstore index if selected */
         if (enable_hstore_index) {
