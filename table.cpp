@@ -121,7 +121,7 @@ void table_t::start()
     if (!append)
     {
         //define the new table
-        string sql = (fmt("CREATE UNLOGGED TABLE %1% (osm_id %2%,") % name % POSTGRES_OSMID_TYPE).str();
+        string sql = (fmt("CREATE TABLE %1% (osm_id %2%,") % name % POSTGRES_OSMID_TYPE).str();
 
         //first with the regular columns
         for (auto const &column : columns) {
