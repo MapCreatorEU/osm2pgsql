@@ -104,7 +104,7 @@ void table_t::start(std::string const &conninfo, std::string const &table_space)
     if (!m_append) {
         //define the new table
         auto sql =
-            "CREATE UNLOGGED TABLE {} (osm_id int8,"_format(qual_name);
+            "CREATE TABLE {} (osm_id int8,"_format(qual_name);
 
         //first with the regular columns
         for (auto const &column : m_columns) {
@@ -186,7 +186,7 @@ void table_t::stop(bool updateable, bool enable_hstore_index,
         util::timer_t timer;
 
         log_info("Clustering table '{}' by geometry...", m_target->name);
-
+/*
         // Notices about invalid geometries are expected and can be ignored
         // because they say nothing about the validity of the geometry in OSM.
         m_sql_conn->exec("SET client_min_messages = WARNING");
@@ -227,7 +227,7 @@ void table_t::stop(bool updateable, bool enable_hstore_index,
         m_sql_conn->exec("DROP TABLE {}"_format(qual_name));
         m_sql_conn->exec(
             "ALTER TABLE {} RENAME TO {}"_format(qual_tmp_name, m_target->name));
-
+*/
         log_info("Creating geometry index on table '{}'...", m_target->name);
 
         // Use fillfactor 100 for un-updatable imports
